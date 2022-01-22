@@ -79,7 +79,7 @@ def update(id):
         else:
             db = get_db()
             db.execute(
-                'UPDATE post SET title = ? body ?',
+                'UPDATE post SET title = ?, body = ?',
                 (title, body)
             )
             db.commit()
@@ -87,7 +87,7 @@ def update(id):
 
     return render_template('blog/update.html', post=post)
 
-@bp.route('/<int:id>/delete', methods=('POST'))
+@bp.route('/<int:id>/delete', methods=('POST',))
 @login_required
 def delete(id):
     get_post(id) # check whether a user can delete a given post
