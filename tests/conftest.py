@@ -34,7 +34,9 @@ def client(app):
 def runner(app):
     return app.test_cli_runner()
 
-
+# class allows to streamline writing login and logout functions (methods)
+# this class is then passed to the fixture auth
+# which makes all the class methods available for the unit tests
 class AuthActions(object):
     def __init__(self, client):
         self._client = client
