@@ -17,8 +17,8 @@ def test_register(client, app):
         ).fetchone() is not None
 
 @pytest.mark.parametrize(('username', 'password', 'message'),(
-    ('', '', b'Username can\'t be blank.'),
-    ('a', '', b'Password can\'t be blank.'),
+    ('', '', b'Username cannot be blank.'),
+    ('a', '', b'Password cannot be blank.'),
     ('test', 'test', b'User test is already registered'),
 ))
 def test_register_validate_input(client, username, password, message):
@@ -43,11 +43,15 @@ def test_login(client, auth):
 
 @pytest.mark.parametrize(('username', 'password', 'message'), (
     ('a', 'test', b'Incorrect username.'),
-    ('test', 'a', b'Incorrect password.'),
+    ('test', 'd', b'Incorrect password.'),
 ))
-def test_login_validate_input(auth, username, password, message):
-    response = auth.login(username, password)
-    assert message in response['data']
+def test_login_validate_input(client, auth, username, password, message):
+
+    # in both scenarios user should not be logged in
+    auth.login(username, password)
+    with client:
+        client.get('/')
+        assert 'user_id' not in session.keys()
 
 def test_logout(client, auth):
     auth.login()

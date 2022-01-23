@@ -17,13 +17,13 @@ def test_index(client, auth):
 @pytest.mark.parametrize('path', (
     '/create',
     '/1/update',
-    '/1/delete'
+    '/1/delete',
 ))
 def test_login_required(client, path):
     # if user is not logged in any of the following paths
     # should redirect him back to the login page
     response = client.post(path)
-    assert response.headers['Location'] == 'http//localhost/auth/login'
+    assert response.headers['Location'] == 'http://localhost/auth/login'
 
 def test_author_required(app, client, auth):
     # change the post author to another user
@@ -40,7 +40,7 @@ def test_author_required(app, client, auth):
 
 @pytest.mark.parametrize('path', (
     '/2/update',
-    '/2/delete'
+    '/2/delete',
 ))
 def test_exists_required(client, auth, path):
     auth.login()

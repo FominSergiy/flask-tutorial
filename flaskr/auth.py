@@ -19,9 +19,9 @@ def register():
         error = None
 
         if not username:
-            error = 'Username can\'t be blank.'
+            error = 'Username cannot be blank.'
         elif not password:
-            error = 'Password can\'t be blank.'
+            error = 'Password cannot be blank.'
 
         # Redirect when registration is successful
         if error is None:

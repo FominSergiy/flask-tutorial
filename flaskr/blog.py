@@ -4,7 +4,7 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 
-from flaskr.auth import login_required
+from flaskr.auth import login, login_required
 from flaskr.db import get_db
 
 bp = Blueprint('blog', __name__)
@@ -20,7 +20,9 @@ def index():
 
     return render_template('blog/index.html', posts=posts)
 
+
 @bp.route('/create', methods=('GET','POST'))
+@login_required
 def create():
     if request.method == 'POST':
         title = request.form['title']
