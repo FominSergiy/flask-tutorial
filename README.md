@@ -2,6 +2,8 @@
 
 This app was created from a flask tutorial, the **Flaskr** app: [flask tutorial](https://flask.palletsprojects.com/en/2.0.x/tutorial/)
 
+[![Run Py Tests](https://github.com/FominSergiy/flask-tutorial/actions/workflows/run-py-tests.yml/badge.svg)](https://github.com/FominSergiy/flask-tutorial/actions/workflows/run-py-tests.yml)
+
 ## Setup
 
 You will need to setup a virtual env.
